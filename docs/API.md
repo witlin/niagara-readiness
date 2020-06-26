@@ -20,7 +20,10 @@
     - { BReadinessScore } score: A niagara object containing the numerical
       readiness scoring value, one of three possible states of readiness (GREEN, 
       YELLOW, RED), and a legend which is also a part of the enum backed by a HashMap.
-      
+    - { BPointLog } advanced: BComplex that exists only to bind the point-log-view. 
+      When double-left clicked it will invoke the checkIt action and display the view
+      with data updated by the checkIt action, which will also update the score
+      widget on the property sheet, but on a separate thread.  
     ##### Niagara Actions:
     - { return: null, params: null } checkIt: calls an asynchronous job which in 
     order to fill up the point-log. It also calls a Runnable object to compute the score
@@ -29,7 +32,7 @@
   - { BITable } AbstractPointLog: A table object that satisfies the contract with BITable.
   - { BSimpleJob } job: Build the point-log table.    
   #### Niagara UI
-  - { BWbComponentView } BPointLogView
+  - { BWbComponentView } BPointLogView: An advanced view 
     ##### Niagara Properties
     - { BTable } PointLogTable: A table of all the points that were flagged by the program
          as requiring significant extra work to make Resolute Ready. The PointLog will be
