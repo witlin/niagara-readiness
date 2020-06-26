@@ -1,0 +1,9 @@
+task exportCert(type:Exec){
+    workingDir n4JreDir
+    commandLine 'keytool',
+            '-export',
+            '-keystore', certDir.concat('\\'+store),
+            '-alias', alias,
+            '-file', certDir+'\\'+alias+'.cer',
+            '-rfc'
+}

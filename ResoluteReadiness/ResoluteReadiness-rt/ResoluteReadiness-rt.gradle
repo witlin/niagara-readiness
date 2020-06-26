@@ -1,0 +1,55 @@
+/* Module Build File */
+
+description     = ""
+ext {
+}
+niagaraModule {
+  moduleName = "ResoluteReadiness"
+  preferredSymbol = "rdn"
+  runtimeProfile = "rt"
+
+  modulePart {
+      name = "ResoluteReadiness-ux"
+      runtimeProfile = "ux"
+  }
+
+  modulePart {
+      name = "ResoluteReadiness-wb"
+      runtimeProfile = "wb"
+  }
+
+  modulePart {
+      name = "ResoluteReadiness-se"
+      runtimeProfile = "se"
+  }
+}
+
+dependencies {
+  compile "Tridium:nre:4.8"
+  compile "Tridium:baja:4.8"
+  compile "Tridium:bacnet-rt:4.8"
+  compile "Tridium:control-rt:4.8"
+  compile "Tridium:driver-rt:4.8"
+  compile "Tridium:fox-rt:4.8"
+  compile "Tridium:gx-rt:4.8"
+  compile "Tridium:history-rt:4.8"
+  compile "Tridium:modbusTcp-rt:4.8"
+  compile "Tridium:net-rt:4.8"
+  compile "Tridium:niagaraDriver-rt:4.8"
+}
+
+jar {
+    from("src") {
+        include "/res/**/*.txt"
+    } doLast {
+        apply from: "${rootDir}/gradle/signJar.gradle"
+        tasks.withType(Exec) {
+            Exec task -> task.execute()
+        }
+    }
+}
+
+moduleTestJar {
+  from('srcTest') {
+  }
+}

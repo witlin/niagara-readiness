@@ -1,0 +1,14 @@
+/*
+ * Copyright 2020 ResoluteBuildingIntelligence, All Rights Reserved.
+ */
+/* Environment Configuration File */
+
+// Change niagara_home and niagara_user_home as needed to point to the
+// correct path to your desired Niagara install and its associated
+// user home
+gradle.ext.niagara_dev_home = "C:/Users/integrator/Documents/git/niagara-readiness"
+gradle.ext.niagara_home = "c:/niagara/niagara-4.8.0.110"
+gradle.ext.niagara_user_home = "C:/Users/integrator/Niagara4.8/vykon"
+gradle.ext.niagara_modules = "C:/niagara/niagara-4.8.0.110/modules"
+gradle.ext.certmgmt = "C:/Users/integrator/Niagara4.8/vykon/certManagement"
+gradle.ext.niagara_jre = "c:/niagara/niagara-4.8.0.110/jre/bin"

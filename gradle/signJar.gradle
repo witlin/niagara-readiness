@@ -1,0 +1,14 @@
+/*task signJar(type:Exec){
+    commandLine 'jarsigner',
+            '-keystore', certDir.concat('\\'+store),
+            '-storepass', pass,
+            jarDir.concat('\\'+jarName+'.jar'),
+            alias
+}*/
+println "SIGN-JAR"
+println project.property("user")
+println project.property("pass")
+println project.property("cert.alias")
+println project.property("cert.store")
+println gradle.ext.niagara_jre
+

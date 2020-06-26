@@ -1,0 +1,45 @@
+/* Module Build File */
+
+description     = ""
+ext {
+}
+niagaraModule {
+  moduleName = "ResoluteReadiness"
+  preferredSymbol = "rdn"
+  runtimeProfile = "wb"
+}
+
+dependencies {
+  compile "Tridium:nre:4.8"
+  compile "Tridium:baja:4.8"
+  compile "Tridium:bacnet-rt:4.8"
+  compile "Tridium:bacnet-ux:4.8"
+  compile "Tridium:bacnet-wb:4.8"
+  compile "Tridium:control-rt:4.8"
+  compile "Tridium:control-ux:4.8"
+  compile "Tridium:control-wb:4.8"
+  compile "Tridium:driver-rt:4.8"
+  compile "Tridium:driver-ux:4.8"
+  compile "Tridium:driver-wb:4.8"
+  compile "Tridium:fox-rt:4.8"
+  compile "Tridium:gx-rt:4.8"
+  compile "Tridium:gx-ux:4.8"
+  compile "Tridium:gx-wb:4.8"
+  compile "Tridium:history-rt:4.8"
+  compile "Tridium:history-ux:4.8"
+  compile "Tridium:history-wb:4.8"
+  compile "Tridium:modbusTcp-rt:4.8"
+  compile "Tridium:modbusTcp-wb:4.8"
+  compile "Tridium:net-rt:4.8"
+  compile "Tridium:niagaraDriver-rt:4.8"
+  compile "Tridium:niagaraDriver-wb:4.8"
+  compile "Tridium:test-wb:4.8"
+  compile "Tridium:wbutil-wb:4.8"
+  compile "Tridium:workbench-wb:4.8"
+  compile project(":ResoluteReadiness-rt")
+}
+
+moduleTestJar {
+  from('srcTest') {
+  }
+}
