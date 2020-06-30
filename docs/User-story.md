@@ -1,13 +1,14 @@
 # User Story
 [back to README](README.md)
-1. The user logs into the Niagara station, filters modules in the palette search screen
-   by 'ResoluteReadiness', finds the ResoluteReadiness Niagara component, drags and drops
-   it where they may wish in the station for example under config.
-2. The user can right-click the newly added component in the nav tree and select the action
-   in order to generate score, state, and a log about the readiness of the niagara station
-   for integration, and the points that need to be fixed.\
-   The user may choose to double-left click the component on the nav tree and go into the components
-   property sheet where the time-to-finish per point is adjustable, and the number of bad
-   points as well as the scoring widget are available to see.
-3. If the user double-left clicks the Advanced property on the property sheet, it will open
-   the point-log-view and display a table of all the bad points.
+1. Log into the Niagara station, filter modules in the palette search screen
+   by 'ResoluteReadiness', find the ResoluteReadiness Niagara component, drag it and drop it
+    under config.
+2. Right-click the newly added component in the nav tree and click on the 'check-it' action to 
+   generate score, state, and a log about the readiness of the niagara station for integration, 
+   and the points that need to be fixed.
+3. Double-left click the ResoluteReadiness Niagara component to display the UI, from the top right
+   corner you can select the 'views' drop-down menu and go to the Property sheet to see a Niagara
+   native GUI of the station model components of the ResoluteReadiness module which get loaded into
+   the Workbench view.
+   
+   ![GUI View](imgs/readiness-ui.jpg)

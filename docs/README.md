@@ -5,7 +5,7 @@ The Niagara readiness module will assess and score the amount of work and
 time required to integrate the Niagara station into Resolute.
 
 1. Query the niagara station for all points without history. An opportunity exists here
-   to be concious of the user's system resources and filter points of interests by a
+   to be conscious of the user's system resources and filter points of interests by a
    combination of strategies such as:
     - By units of engineering
     - By regex pattern matching Resolute Point Template names
@@ -17,14 +17,13 @@ time required to integrate the Niagara station into Resolute.
    resulting history collection will be in a fault state due to misformatted ORDs.
 4. Compute the Readiness score based on the number of flagged points multiplied by 
    the time it takes to re-format the ORD and re-bind every other object that holds
-   a reference to the point via its ORD. Obviously this value will a very naive time
-   estimate based subjective individual observation of a micro group of Niagara users.
-   An opportunity to implement a more reliable means to measure true time to complete
-   these tasks is possible with minimal additional development time. An idea would be
-   to have start and stop recording actions, where if the user has to manually do the
-   work they could press start and we could record Niagara framework user events; when
-   done the user can press stop, and the component records and stores historical record
-   with number of operations performed by the user during the recorded time interval.
+   a reference to the point via its ORD. An opportunity to implement a more reliable 
+   means to measure true time to complete these tasks is possible with minimal additional 
+   development time. An idea would be to have start and stop recording actions, 
+   where if the user has to manually do the work they could press start, and we could 
+   record Niagara framework user events; when done the user can press stop, and the 
+   component records and stores historical record with number of operations performed by 
+   the user during the recorded time interval.
 5. Display a score between 0 and 100, where 0 represents a very labor intensive
    system to integrate and 100 displays a near ready system.
    
@@ -39,4 +38,5 @@ time required to integrate the Niagara station into Resolute.
    50 is red.
 7. Display a legend describing color coding and scoring.
 8. Provide an advanced view with a table of all bad points.
+9. Provide a Help section on how to use the module.
         
