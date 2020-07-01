@@ -1,3 +1,9 @@
+def certDir = project.property("niagara.cert.mgmt")
+def store = project.property("niagara.cert.store")
+def jarDir = project.property("niagara.modules")
+def pass = project.property("niagara.pass")
+def jarName = project.name.substring(0, project.name.length() - 3)
+
 /*task signJar(type:Exec){
     commandLine 'jarsigner',
             '-keystore', certDir.concat('\\'+store),
@@ -5,10 +11,3 @@
             jarDir.concat('\\'+jarName+'.jar'),
             alias
 }*/
-println "SIGN-JAR"
-println project.property("user")
-println project.property("pass")
-println project.property("cert.alias")
-println project.property("cert.store")
-println gradle.ext.niagara_jre
-
