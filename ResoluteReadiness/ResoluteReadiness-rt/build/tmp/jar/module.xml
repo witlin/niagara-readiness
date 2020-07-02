@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="ResoluteReadiness-rt" bajaVersion="0" vendor="ResoluteBuildingIntelligence" vendorVersion="1.0" description="" preferredSymbol="rdn" nre="true" autoload="true" installable="true" buildMillis="1593708019819" buildHost="CWR" moduleName="ResoluteReadiness" runtimeProfile="rt">
+ <dependencies>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="modbusTcp-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="bacnet-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="niagaraDriver-rt" vendor="Tridium" vendorVersion="4.8"/>
+ </dependencies>
+ <dirs/>
+ <types>
+  <type class="com.resolutebuildingintelligence.ResoluteReadiness.impl.BResoluteReady" name="ResoluteReady"/>
+  <type class="com.resolutebuildingintelligence.ResoluteReadiness.impl.BReadinessScore" name="ReadinessScore"/>
+ </types>
+ <permissions>
+  <niagara-permission-groups type="all"/>
+  <niagara-permission-groups type="workbench"/>
+  <niagara-permission-groups type="station"/>
+ </permissions>
+ <moduleParts>
+  <modulePart name="ResoluteReadiness-ux" runtimeProfile="ux"/>
+  <modulePart name="ResoluteReadiness-wb" runtimeProfile="wb"/>
+  <modulePart name="ResoluteReadiness-se" runtimeProfile="se"/>
+ </moduleParts>
+</module>

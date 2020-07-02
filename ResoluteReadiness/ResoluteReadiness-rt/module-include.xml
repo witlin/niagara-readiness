@@ -1,8 +1,8 @@
 <!-- Module Include File -->
-
 <!-- Types -->
 <types>
-  <!-- Type Example:
-  <type name="MyClass" class="com.acme.BMyClass"/>
-  -->
+  <!-- Type Example:<type name="MyClass" class="com.acme.BMyClass"/> -->
+  <!--com.resolutebuildingintelligence.ResoluteReadiness.impl-->
+  <type class="com.resolutebuildingintelligence.ResoluteReadiness.impl.BResoluteReady" name="ResoluteReady"/>
+  <type class="com.resolutebuildingintelligence.ResoluteReadiness.impl.BReadinessScore" name="ReadinessScore"/>
 </types>
