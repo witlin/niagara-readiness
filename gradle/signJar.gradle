@@ -2,12 +2,14 @@ def certDir = project.property("niagara.cert.mgmt")
 def store = project.property("niagara.cert.store")
 def jarDir = project.property("niagara.modules")
 def pass = project.property("niagara.pass")
+def alias = project.property("niagara.cert.alias")
 def jarName = project.name.substring(0, project.name.length() - 3)
 
-/*task signJar(type:Exec){
+task signJar(type:Exec){
+    println "SIGN-JAR..."
     commandLine 'jarsigner',
             '-keystore', certDir.concat('\\'+store),
             '-storepass', pass,
             jarDir.concat('\\'+jarName+'.jar'),
             alias
-}*/
+}

@@ -21,7 +21,7 @@
     with data updated by the checkIt action, which will also update the score
     widget on the property sheet, but on a separate thread.  
     ##### Niagara Actions:
-    - **{ return: null, params: null } checkIt**: calls an asynchronous job which in 
+    - **{ return: null, params: null } scoreIt**: calls an asynchronous job which in 
     order to fill up the point-log. It also calls a Runnable object to compute the score
     and set the state once the total number of bad points are known. 
 ---
@@ -39,7 +39,7 @@
     ##### Niagara Properties
     ##### Niagara Actions
 ---
-  - **{ BHelpDocModel }**: An html or xml string with the help markup and content.
+  - **{ BHelpDocument }**: An html or xml string with the help markup and content.
     ##### Niagara Properties
     ##### Niagara Actions
 ---    

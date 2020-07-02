@@ -1,3 +1,8 @@
+def certDir = project.property("niagara.cert.mgmt")
+def store = project.property("niagara.cert.store")
+def alias = project.property("niagara.cert.alias")
+def n4JreDir = project.property("niagara.jre")
+
 task exportCert(type:Exec){
     workingDir n4JreDir
     commandLine 'keytool',

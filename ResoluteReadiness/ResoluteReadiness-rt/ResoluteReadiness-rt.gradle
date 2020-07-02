@@ -2,6 +2,7 @@
 
 description     = ""
 ext {
+
 }
 niagaraModule {
   moduleName = "ResoluteReadiness"
@@ -42,10 +43,12 @@ jar {
     from("src") {
         include "/res/**/*.txt"
     } doLast {
-        apply from: "${rootDir}/gradle/signJar.gradle"
-        tasks.withType(Exec) {
-            Exec task -> task.execute()
-        }
+//        apply from: "${rootDir}/gradle/signJar.gradle"
+//        project.getTasks()
+//                .findByPath("signJar") {
+//            Exec task -> task.execute()
+//        }
+//        tasks.withType(Exec) {}
     }
 }
 

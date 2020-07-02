@@ -1,0 +1,41 @@
+def pass = project.property("niagara.pass")
+def certDir = project.property("niagara.cert.mgmt")
+def store = project.property("niagara.cert.store")
+def alias = project.property("niagara.cert.alias")
+def n4JreDir = project.property("niagara.jre")
+def jarDir = project.property("niagara.modules")
+def jarName = project.name.substring(0, project.name.length() - 3)
+
+task genKey(type:Exec){
+    workingDir project.name
+    commandLine 'keytool',
+    '-genkey',
+    '-alias', alias ,
+    '-keyAlg', 'RSA',
+    '-ext', 'EKU=\"codeSigning\"',
+    '-validity', '600',
+    '-keypass', pass,
+    '-storepass', pass,
+    '-keystore', String.valueOf(project.property("niagara.cert.mgmt"))
+                       .concat('\\'+project.property("niagara.cert.store")),
+    '-dname', 'CN=Victor Smolinski, OU=Development, O=Resolute BI, L=Birmingham, ST=Michigan, C=US'
+}
+
+task exportCert(type:Exec){
+    workingDir n4JreDir
+    commandLine 'keytool',
+            '-export',
+            '-keystore', certDir.concat('\\'+store),
+            '-alias', alias,
+            '-file', certDir+'\\'+alias+'.cer',
+            '-rfc'
+}
+
+task signJar(type:Exec){
+    println "SIGN-JAR..."
+    commandLine 'jarsigner',
+            '-keystore', certDir.concat('\\'+store),
+            '-storepass', pass,
+            jarDir.concat('\\'+jarName+'.jar'),
+            alias
+}
