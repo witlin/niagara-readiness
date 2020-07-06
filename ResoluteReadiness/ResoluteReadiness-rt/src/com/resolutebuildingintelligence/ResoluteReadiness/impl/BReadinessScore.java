@@ -1,7 +1,17 @@
 package com.resolutebuildingintelligence.ResoluteReadiness.impl;
 
+import com.resolutebuildingintelligence.ResoluteReadiness.api.IReadinessScore;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.baja.collection.BITable;
+import javax.baja.control.BControlPoint;
+import javax.baja.naming.BOrd;
+import javax.baja.nre.annotations.Facet;
 import javax.baja.nre.annotations.NiagaraProperty;
 import javax.baja.nre.annotations.NiagaraType;
+import javax.baja.sys.BFacets;
+import javax.baja.sys.BObject;
 import javax.baja.sys.Sys;
 import javax.baja.sys.Type;
 import javax.baja.sys.Flags;
@@ -16,19 +26,24 @@ import javax.baja.sys.BComponent;
     name = "score",
     type = "baja:Integer",
     defaultValue = "BInteger.make(0)",
-    flags = Flags.READONLY
+    flags = Flags.READONLY,
+    facets = {
+        @Facet(name = "BFacets.MIN", value = "BInteger.make(0)"),
+        @Facet(name = "BFacets.MAX", value = "BInteger.make(100)")
+    }
 )
 @NiagaraProperty(
-    name = "score_label",
+    name = "scoreLabel",
     type = "baja:String",
     defaultValue = "BString.make(\"\")",
     flags = Flags.READONLY
 )
 @NiagaraProperty(
-    name = "score_desc",
+    name = "scoreDesc",
     type = "baja:String",
     defaultValue = "BString.make(\"\")",
-    flags = Flags.READONLY
+    flags = Flags.READONLY,
+    facets = { @Facet(name = "BFacets.MULTI_LINE", value = "true") }
 )
 @NiagaraProperty(
     name = "totalBadPts",
@@ -40,242 +55,277 @@ import javax.baja.sys.BComponent;
     name = "time2Ready",
     type = "baja:RelTime",
     defaultValue = "BRelTime.makeMinutes(0)",
+    flags = Flags.READONLY,
+    facets = {
+        @Facet(name = "BFacets.MIN", value = "BRelTime.makeMinutes(0)"),
+        @Facet(name = "BFacets.MAX", value = "BRelTime.makeMinutes(100000)")
+    }
+)
+@NiagaraProperty(
+    name = "stateColor",
+    type = "baja:String",
+    defaultValue = "BString.make(\"\")",
     flags = Flags.READONLY
 )
-//TODO - STATE PROPERTY...
-
 @NiagaraProperty(
     name = "timePerPoint",
     type = "baja:RelTime",
-    defaultValue = "BRelTime.makeMinutes(10)"
+    defaultValue = "BRelTime.makeMinutes(10)",
+    flags = Flags.HIDDEN,
+    facets = {
+        @Facet(name = "BFacets.MIN", value = "BRelTime.makeMinutes(0)"),
+        @Facet(name = "BFacets.MAX", value = "BRelTime.makeMinutes(120)")
+    }
 )
 @NiagaraProperty(
     name = "scaleMaxTime",
     type = "baja:RelTime",
-    defaultValue = "BRelTime.makeMinutes(500)"
+    defaultValue = "BRelTime.makeMinutes(500)",
+    flags = Flags.HIDDEN,
+    facets = {
+        @Facet(name = "BFacets.MIN", value = "BRelTime.makeMinutes(0)"),
+        @Facet(name = "BFacets.MAX", value = "BRelTime.makeMinutes(1000)")
+    }
 )
 
-public class BReadinessScore extends BComponent {
-  /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
-  /*@ $com.resolutebuildingintelligence.ResoluteReadiness.impl.BReadinessScore(3119599650)1.0$ @*/
-  /* Generated Thu Jul 02 12:27:29 EDT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+public class BReadinessScore extends BComponent implements IReadinessScore {
+  
+/*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
+/*@ $com.resolutebuildingintelligence.ResoluteReadiness.impl.BReadinessScore(1816705029)1.0$ @*/
+/* Generated Thu Jul 02 15:39:33 EDT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
 
 ////////////////////////////////////////////////////////////////
 // Property "score"
 ////////////////////////////////////////////////////////////////
-
+  
   /**
    * Slot for the {@code score} property.
-   *
    * @see #getScore
    * @see #setScore
    */
-  public static final Property score = newProperty(Flags.READONLY,
-      BInteger.make(0).getInt(), null);
-  /**
-   * Slot for the {@code score_label} property.
-   *
-   * @see #getScore_label
-   * @see #setScore_label
-   */
-  public static final Property score_label = newProperty(Flags.READONLY, BString.make(""), null);
-  /**
-   * Slot for the {@code score_desc} property.
-   *
-   * @see #getScore_desc
-   * @see #setScore_desc
-   */
-  public static final Property score_desc = newProperty(Flags.READONLY, BString.make(""), null);
-
-////////////////////////////////////////////////////////////////
-// Property "score_label"
-////////////////////////////////////////////////////////////////
-  /**
-   * Slot for the {@code totalBadPts} property.
-   *
-   * @see #getTotalBadPts
-   * @see #setTotalBadPts
-   */
-  public static final Property totalBadPts = newProperty(Flags.READONLY,
-      BInteger.make(0).getInt(), null);
-  /**
-   * Slot for the {@code time2Ready} property.
-   *
-   * @see #getTime2Ready
-   * @see #setTime2Ready
-   */
-  public static final Property time2Ready = newProperty(Flags.READONLY, BRelTime.makeMinutes(0),
-      null);
-  /**
-   * Slot for the {@code timePerPoint} property.
-   *
-   * @see #getTimePerPoint
-   * @see #setTimePerPoint
-   */
-  public static final Property timePerPoint = newProperty(0, BRelTime.makeMinutes(10), null);
-
-////////////////////////////////////////////////////////////////
-// Property "score_desc"
-////////////////////////////////////////////////////////////////
-  /**
-   * Slot for the {@code scaleMaxTime} property.
-   *
-   * @see #getScaleMaxTime
-   * @see #setScaleMaxTime
-   */
-  public static final Property scaleMaxTime = newProperty(0, BRelTime.makeMinutes(500), null);
-  public static final Type TYPE = Sys.loadType(BReadinessScore.class);
-
+  public static final Property score = newProperty(Flags.READONLY, ((BInteger)(BInteger.make(0))).getInt(), BFacets.make(BFacets.make(BFacets.MIN, BInteger.make(0)), BFacets.make(BFacets.MAX, BInteger.make(100))));
+  
   /**
    * Get the {@code score} property.
-   *
    * @see #score
    */
-  public int getScore() {
-    return getInt(score);
-  }
+  public int getScore() { return getInt(score); }
+  
+  /**
+   * Set the {@code score} property.
+   * @see #score
+   */
+  public void setScore(int v) { setInt(score, v, null); }
+
+////////////////////////////////////////////////////////////////
+// Property "scoreLabel"
+////////////////////////////////////////////////////////////////
+  
+  /**
+   * Slot for the {@code scoreLabel} property.
+   * @see #getScoreLabel
+   * @see #setScoreLabel
+   */
+  public static final Property scoreLabel = newProperty(Flags.READONLY, BString.make(""), null);
+  
+  /**
+   * Get the {@code scoreLabel} property.
+   * @see #scoreLabel
+   */
+  public String getScoreLabel() { return getString(scoreLabel); }
+  
+  /**
+   * Set the {@code scoreLabel} property.
+   * @see #scoreLabel
+   */
+  public void setScoreLabel(String v) { setString(scoreLabel, v, null); }
+
+////////////////////////////////////////////////////////////////
+// Property "scoreDesc"
+////////////////////////////////////////////////////////////////
+  
+  /**
+   * Slot for the {@code scoreDesc} property.
+   * @see #getScoreDesc
+   * @see #setScoreDesc
+   */
+  public static final Property scoreDesc = newProperty(Flags.READONLY, BString.make(""), BFacets.make(BFacets.MULTI_LINE, true));
+  
+  /**
+   * Get the {@code scoreDesc} property.
+   * @see #scoreDesc
+   */
+  public String getScoreDesc() { return getString(scoreDesc); }
+  
+  /**
+   * Set the {@code scoreDesc} property.
+   * @see #scoreDesc
+   */
+  public void setScoreDesc(String v) { setString(scoreDesc, v, null); }
 
 ////////////////////////////////////////////////////////////////
 // Property "totalBadPts"
 ////////////////////////////////////////////////////////////////
-
+  
   /**
-   * Set the {@code score} property.
-   *
-   * @see #score
+   * Slot for the {@code totalBadPts} property.
+   * @see #getTotalBadPts
+   * @see #setTotalBadPts
    */
-  public void setScore(int v) {
-    setInt(score, v, null);
-  }
-
+  public static final Property totalBadPts = newProperty(Flags.READONLY, ((BInteger)(BInteger.make(0))).getInt(), null);
+  
   /**
-   * Get the {@code score_label} property.
-   *
-   * @see #score_label
+   * Get the {@code totalBadPts} property.
+   * @see #totalBadPts
    */
-  public String getScore_label() {
-    return getString(score_label);
-  }
-
+  public int getTotalBadPts() { return getInt(totalBadPts); }
+  
   /**
-   * Set the {@code score_label} property.
-   *
-   * @see #score_label
+   * Set the {@code totalBadPts} property.
+   * @see #totalBadPts
    */
-  public void setScore_label(String v) {
-    setString(score_label, v, null);
-  }
+  public void setTotalBadPts(int v) { setInt(totalBadPts, v, null); }
 
 ////////////////////////////////////////////////////////////////
 // Property "time2Ready"
 ////////////////////////////////////////////////////////////////
-
+  
   /**
-   * Get the {@code score_desc} property.
-   *
-   * @see #score_desc
+   * Slot for the {@code time2Ready} property.
+   * @see #getTime2Ready
+   * @see #setTime2Ready
    */
-  public String getScore_desc() {
-    return getString(score_desc);
-  }
-
+  public static final Property time2Ready = newProperty(Flags.READONLY, BRelTime.makeMinutes(0), BFacets.make(BFacets.make(BFacets.MIN, BRelTime.makeMinutes(0)), BFacets.make(BFacets.MAX, BRelTime.makeMinutes(100000))));
+  
   /**
-   * Set the {@code score_desc} property.
-   *
-   * @see #score_desc
+   * Get the {@code time2Ready} property.
+   * @see #time2Ready
    */
-  public void setScore_desc(String v) {
-    setString(score_desc, v, null);
-  }
-
+  public BRelTime getTime2Ready() { return (BRelTime)get(time2Ready); }
+  
   /**
-   * Get the {@code totalBadPts} property.
-   *
-   * @see #totalBadPts
+   * Set the {@code time2Ready} property.
+   * @see #time2Ready
    */
-  public int getTotalBadPts() {
-    return getInt(totalBadPts);
-  }
+  public void setTime2Ready(BRelTime v) { set(time2Ready, v, null); }
+
+////////////////////////////////////////////////////////////////
+// Property "stateColor"
+////////////////////////////////////////////////////////////////
+  
+  /**
+   * Slot for the {@code stateColor} property.
+   * @see #getStateColor
+   * @see #setStateColor
+   */
+  public static final Property stateColor = newProperty(Flags.READONLY, BString.make(""), null);
+  
+  /**
+   * Get the {@code stateColor} property.
+   * @see #stateColor
+   */
+  public String getStateColor() { return getString(stateColor); }
+  
+  /**
+   * Set the {@code stateColor} property.
+   * @see #stateColor
+   */
+  public void setStateColor(String v) { setString(stateColor, v, null); }
 
 ////////////////////////////////////////////////////////////////
 // Property "timePerPoint"
 ////////////////////////////////////////////////////////////////
-
+  
   /**
-   * Set the {@code totalBadPts} property.
-   *
-   * @see #totalBadPts
+   * Slot for the {@code timePerPoint} property.
+   * @see #getTimePerPoint
+   * @see #setTimePerPoint
    */
-  public void setTotalBadPts(int v) {
-    setInt(totalBadPts, v, null);
-  }
-
+  public static final Property timePerPoint = newProperty(Flags.HIDDEN, BRelTime.makeMinutes(10), BFacets.make(BFacets.make(BFacets.MIN, BRelTime.makeMinutes(0)), BFacets.make(BFacets.MAX, BRelTime.makeMinutes(120))));
+  
   /**
-   * Get the {@code time2Ready} property.
-   *
-   * @see #time2Ready
+   * Get the {@code timePerPoint} property.
+   * @see #timePerPoint
    */
-  public BRelTime getTime2Ready() {
-    return (BRelTime) get(time2Ready);
-  }
-
+  public BRelTime getTimePerPoint() { return (BRelTime)get(timePerPoint); }
+  
   /**
-   * Set the {@code time2Ready} property.
-   *
-   * @see #time2Ready
+   * Set the {@code timePerPoint} property.
+   * @see #timePerPoint
    */
-  public void setTime2Ready(BRelTime v) {
-    set(time2Ready, v, null);
-  }
+  public void setTimePerPoint(BRelTime v) { set(timePerPoint, v, null); }
 
 ////////////////////////////////////////////////////////////////
 // Property "scaleMaxTime"
 ////////////////////////////////////////////////////////////////
-
+  
   /**
-   * Get the {@code timePerPoint} property.
-   *
-   * @see #timePerPoint
+   * Slot for the {@code scaleMaxTime} property.
+   * @see #getScaleMaxTime
+   * @see #setScaleMaxTime
    */
-  public BRelTime getTimePerPoint() {
-    return (BRelTime) get(timePerPoint);
-  }
-
-  /**
-   * Set the {@code timePerPoint} property.
-   *
-   * @see #timePerPoint
-   */
-  public void setTimePerPoint(BRelTime v) {
-    set(timePerPoint, v, null);
-  }
-
+  public static final Property scaleMaxTime = newProperty(Flags.HIDDEN, BRelTime.makeMinutes(500), BFacets.make(BFacets.make(BFacets.MIN, BRelTime.makeMinutes(0)), BFacets.make(BFacets.MAX, BRelTime.makeMinutes(1000))));
+  
   /**
    * Get the {@code scaleMaxTime} property.
-   *
    * @see #scaleMaxTime
    */
-  public BRelTime getScaleMaxTime() {
-    return (BRelTime) get(scaleMaxTime);
-  }
+  public BRelTime getScaleMaxTime() { return (BRelTime)get(scaleMaxTime); }
+  
+  /**
+   * Set the {@code scaleMaxTime} property.
+   * @see #scaleMaxTime
+   */
+  public void setScaleMaxTime(BRelTime v) { set(scaleMaxTime, v, null); }
 
 ////////////////////////////////////////////////////////////////
 // Type
 ////////////////////////////////////////////////////////////////
-
-  /**
-   * Set the {@code scaleMaxTime} property.
-   *
-   * @see #scaleMaxTime
-   */
-  public void setScaleMaxTime(BRelTime v) {
-    set(scaleMaxTime, v, null);
-  }
-
+  
   @Override
-  public Type getType() {
-    return TYPE;
-  }
+  public Type getType() { return TYPE; }
+  public static final Type TYPE = Sys.loadType(BReadinessScore.class);
 
   /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
+
+
+  private static Logger logger = Logger.getLogger("ResoluteReadiness.BReadinessScore");
+  private List<BControlPoint> badPoints = new ArrayList<BControlPoint>();
+
+  /***
+   * 1. Query for all points without history.
+   *  1.1 find all remote station hosts, and spun asynchronous session workers.
+   *  1.2 collect all points without histories from each remote into individual lists.
+   *  1.3 find the proxy points on the supervisor and verify histories weren't applied
+   *      at the supervisor.
+   * 2. Test the resulting points for history id viability on their corresponding
+   *    remote stations.
+   * @return The list of bad points.
+   */
+  @Override
+  public List<BControlPoint> findBadPoints() {
+    //TODO
+    return null;
+  }
+
+  /***
+   * Compute the readiness score based on the following algorithm:
+   * time-to-finish = num-of-bad-points * time-to-finish-per-point
+   * score = 100 - (100 - 0)/(scale-max-time - scale-min-time) * time-to-finish
+   * update the value in the score property of the implementation member.
+   * @return null
+   */
+  @Override
+  public void computeScore() {
+    //TODO
+  }
+
+  /***
+   * Compute and update the current state.
+   * @return null
+   */
+  @Override
+  public void computeState() {
+    //TODO
+  }
 }
