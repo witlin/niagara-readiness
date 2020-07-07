@@ -3,6 +3,7 @@ package com.resolutebuildingintelligence.ResoluteReadiness.impl;
 import com.resolutebuildingintelligence.ResoluteReadiness.api.IReadinessScore;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import javax.baja.collection.BITable;
 import javax.baja.control.BControlPoint;
@@ -289,21 +290,28 @@ public class BReadinessScore extends BComponent implements IReadinessScore {
   /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
 
 
-  private static Logger logger = Logger.getLogger("ResoluteReadiness.BReadinessScore");
-  private List<BControlPoint> badPoints = new ArrayList<BControlPoint>();
+  private static Logger logger =
+      Logger.getLogger("ResoluteReadiness.BReadinessScore");
+
+  public static BReadinessScore make() {
+    return new BReadinessScore();
+  }
 
   /***
-   * 1. Query for all points without history.
-   *  1.1 find all remote station hosts, and spun asynchronous session workers.
-   *  1.2 collect all points without histories from each remote into individual lists.
-   *  1.3 find the proxy points on the supervisor and verify histories weren't applied
-   *      at the supervisor.
-   * 2. Test the resulting points for history id viability on their corresponding
-   *    remote stations.
-   * @return The list of bad points.
+   * 1. Check for remote Niagara hosts, if there aren't any go to 1a, otherwise go to 1b.
+   * 1a. Query the niagara station for all points without history.
+   * 2a. Test the non-time-series points for history id viability.
+   * 1b. Query all hosts excluding the localhost for all points without history.
+   * 2b. Test the non-time-series points for history id viability and collect a list of bad
+   *     points for each host (localhost NOT included)
+   * @return The list of lists of bad points. with only one map entry if there aren't any
+   *         remote hosts.
    */
   @Override
-  public List<BControlPoint> findBadPoints() {
+  public Map<String, List<BControlPoint>> findBadPoints() {
+
+
+
     //TODO
     return null;
   }

@@ -26,6 +26,7 @@ niagaraModule {
 }
 
 dependencies {
+  compile "Tridium:alarm-rt:4.8"
   compile "Tridium:nre:4.8"
   compile "Tridium:baja:4.8"
   compile "Tridium:bacnet-rt:4.8"

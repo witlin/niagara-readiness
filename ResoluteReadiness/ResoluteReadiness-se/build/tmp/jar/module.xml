@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="ResoluteReadiness-se" bajaVersion="0" vendor="ResoluteBuildingIntelligence" vendorVersion="1.0" description="" preferredSymbol="rdn" nre="true" autoload="true" installable="true" buildMillis="1594101122315" buildHost="CWR" moduleName="ResoluteReadiness" runtimeProfile="se">
+ <dependencies>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="driver-ux" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="history-ux" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="aaphp-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="bacnet-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="niagaraDriver-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="test-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="ResoluteReadiness-wb" vendor="ResoluteBuildingIntelligence" vendorVersion="1.0"/>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="wbutil-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="bacnet-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="niagaraDriver-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="driver-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="workbench-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="control-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="gx-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="modbusTcp-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="control-ux" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="ResoluteReadiness-ux" vendor="ResoluteBuildingIntelligence" vendorVersion="1.0"/>
+  <dependency name="modbusTcp-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="history-wb" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="test-se" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="gx-ux" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="bacnet-ux" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="ResoluteReadiness-rt" vendor="ResoluteBuildingIntelligence" vendorVersion="1.0"/>
+ </dependencies>
+ <dirs/>
+ <types/>
+ <permissions>
+  <niagara-permission-groups type="all"/>
+  <niagara-permission-groups type="workbench"/>
+  <niagara-permission-groups type="station"/>
+ </permissions>
+</module>

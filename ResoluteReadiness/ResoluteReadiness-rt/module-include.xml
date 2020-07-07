@@ -5,4 +5,5 @@
   <!--com.resolutebuildingintelligence.ResoluteReadiness.impl-->
   <type class="com.resolutebuildingintelligence.ResoluteReadiness.impl.BResoluteReady" name="ResoluteReady"/>
   <type class="com.resolutebuildingintelligence.ResoluteReadiness.impl.BReadinessScore" name="ReadinessScore"/>
+  <type class="com.resolutebuildingintelligence.ResoluteReadiness.impl.BScoreMeister" name="ScoreMeister"/>
 </types>
