@@ -1,18 +1,15 @@
 package com.resolutebuildingintelligence.ResoluteReadiness.impl;
 
 import com.resolutebuildingintelligence.ResoluteReadiness.api.IReadinessScore;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
-import javax.baja.collection.BITable;
 import javax.baja.control.BControlPoint;
-import javax.baja.naming.BOrd;
 import javax.baja.nre.annotations.Facet;
 import javax.baja.nre.annotations.NiagaraProperty;
 import javax.baja.nre.annotations.NiagaraType;
+import javax.baja.security.BPassword;
 import javax.baja.sys.BFacets;
-import javax.baja.sys.BObject;
 import javax.baja.sys.Sys;
 import javax.baja.sys.Type;
 import javax.baja.sys.Flags;
@@ -23,6 +20,16 @@ import javax.baja.sys.BRelTime;
 import javax.baja.sys.BComponent;
 
 @NiagaraType
+@NiagaraProperty(
+    name = "remoteUser",
+    type = "baja:String",
+    defaultValue = "BString.make(\"\")"
+)
+@NiagaraProperty(
+    name = "remotePass",
+    type = "baja:Password",
+    defaultValue = "BPassword.make(\"\")"
+)
 @NiagaraProperty(
     name = "score",
     type = "baja:Integer",
@@ -92,8 +99,54 @@ import javax.baja.sys.BComponent;
 public class BReadinessScore extends BComponent implements IReadinessScore {
   
 /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
-/*@ $com.resolutebuildingintelligence.ResoluteReadiness.impl.BReadinessScore(1816705029)1.0$ @*/
-/* Generated Thu Jul 02 15:39:33 EDT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+/*@ $com.resolutebuildingintelligence.ResoluteReadiness.impl.BReadinessScore(1174921218)1.0$ @*/
+/* Generated Tue Jul 07 02:46:51 EDT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+
+////////////////////////////////////////////////////////////////
+// Property "remoteUser"
+////////////////////////////////////////////////////////////////
+  
+  /**
+   * Slot for the {@code remoteUser} property.
+   * @see #getRemoteUser
+   * @see #setRemoteUser
+   */
+  public static final Property remoteUser = newProperty(0, BString.make(""), null);
+  
+  /**
+   * Get the {@code remoteUser} property.
+   * @see #remoteUser
+   */
+  public String getRemoteUser() { return getString(remoteUser); }
+  
+  /**
+   * Set the {@code remoteUser} property.
+   * @see #remoteUser
+   */
+  public void setRemoteUser(String v) { setString(remoteUser, v, null); }
+
+////////////////////////////////////////////////////////////////
+// Property "remotePass"
+////////////////////////////////////////////////////////////////
+  
+  /**
+   * Slot for the {@code remotePass} property.
+   * @see #getRemotePass
+   * @see #setRemotePass
+   */
+  public static final Property remotePass = newProperty(0, BPassword.make(""), null);
+  
+  /**
+   * Get the {@code remotePass} property.
+   * @see #remotePass
+   */
+  public BPassword getRemotePass() { return (BPassword)get(remotePass); }
+  
+  /**
+   * Set the {@code remotePass} property.
+   * @see #remotePass
+   */
+  public void setRemotePass(BPassword v) { set(remotePass, v, null); }
 
 ////////////////////////////////////////////////////////////////
 // Property "score"
@@ -287,7 +340,7 @@ public class BReadinessScore extends BComponent implements IReadinessScore {
   public Type getType() { return TYPE; }
   public static final Type TYPE = Sys.loadType(BReadinessScore.class);
 
-  /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
+/*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
 
 
   private static Logger logger =

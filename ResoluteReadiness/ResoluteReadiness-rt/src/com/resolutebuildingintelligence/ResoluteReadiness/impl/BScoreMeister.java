@@ -1,8 +1,11 @@
 package com.resolutebuildingintelligence.ResoluteReadiness.impl;
 
+import static com.resolutebuildingintelligence.ResoluteReadiness.impl.BReadinessScore.score;
+
 import javax.baja.driver.BDevice;
 import javax.baja.driver.BDeviceNetwork;
 import javax.baja.job.BSimpleJob;
+import javax.baja.naming.BHost;
 import javax.baja.naming.BOrd;
 import javax.baja.nre.annotations.NiagaraType;
 import javax.baja.sys.Context;
@@ -26,16 +29,23 @@ public class BScoreMeister extends BSimpleJob {
 
 /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
 
-    public static BScoreMeister make() {
-        return new BScoreMeister();
+    private BReadinessScore score;
+
+    public BScoreMeister(BReadinessScore score){
+      this.score = score;
     }
 
     @Override
     public void run(Context cx) throws Exception {
 
-        /***
-         * Find the remote Niagara hosts connected to this device
-         */
+      /***
+       * Test area...!!!
+       */
+        log().message("TEST - " + score.getRemoteUser());
+
+      /***
+       * Find the remote Niagara hosts connected to this device
+       */
         BOrd networkOrd =
             BOrd.make("station:|slot:/Drivers/NiagaraNetwork");
         BDeviceNetwork niagaraNetwork =
@@ -43,7 +53,9 @@ public class BScoreMeister extends BSimpleJob {
         log().message(niagaraNetwork.getSlotPath()
                                     .toDisplayString());
         for (BDevice device : niagaraNetwork.getDevices()) {
-            log().message(device.getName());
+          log().message(device.getName());
+          BHost host = device.getHost();
+
         }
     }
 }

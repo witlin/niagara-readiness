@@ -89,6 +89,6 @@ public class BResoluteReady extends BComponent {
    */
   public void doScoreIt(Context cx) {
     BJobService.getService()
-               .submit(BScoreMeister.make(), cx);
+               .submit(new BScoreMeister(this.getScore()), cx);
   }
 }
