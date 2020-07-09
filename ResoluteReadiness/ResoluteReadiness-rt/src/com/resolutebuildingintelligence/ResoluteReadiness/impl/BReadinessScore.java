@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import javax.baja.control.BControlPoint;
+import javax.baja.naming.BOrd;
 import javax.baja.nre.annotations.Facet;
 import javax.baja.nre.annotations.NiagaraProperty;
 import javax.baja.nre.annotations.NiagaraType;
@@ -342,9 +343,8 @@ public class BReadinessScore extends BComponent implements IReadinessScore {
 
 /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
 
-
   private static Logger logger =
-      Logger.getLogger("ResoluteReadiness.BReadinessScore");
+      Logger.getLogger("ResoluteReadiness");
 
   public static BReadinessScore make() {
     return new BReadinessScore();
@@ -354,18 +354,19 @@ public class BReadinessScore extends BComponent implements IReadinessScore {
    * 1. Check for remote Niagara hosts, if there aren't any go to 1a, otherwise go to 1b.
    * 1a. Query the niagara station for all points without history.
    * 2a. Test the non-time-series points for history id viability.
-   * 1b. Query all hosts excluding the localhost for all points without history.
+   * 1b. Query all hosts including the localhost for all points without history.
    * 2b. Test the non-time-series points for history id viability and collect a list of bad
-   *     points for each host (localhost NOT included)
-   * @return The list of lists of bad points. with only one map entry if there aren't any
-   *         remote hosts.
+   *     points for each host (localhost very much included).
+   * 3b. Not MVP, but now in hind sight seems necesary; we could have a custom Java Comparator
+   *     class made in order to do a map-reduce of the bad points in the supervisor that are
+   *     duplicate proxies of their remote station counterparts. We could use the pointId property
+   *     of the niagaraPointExt.
+   * @return The dictionary of lists of bad points (.
    */
   @Override
   public Map<String, List<BControlPoint>> findBadPoints() {
 
-
-
-    //TODO
+    //TODO - Logic inside the BScoreMeister run method
     return null;
   }
 

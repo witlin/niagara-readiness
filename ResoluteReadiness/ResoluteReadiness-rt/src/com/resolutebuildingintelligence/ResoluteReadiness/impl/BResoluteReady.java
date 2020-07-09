@@ -73,7 +73,7 @@ public class BResoluteReady extends BComponent {
 /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
 
   private static Logger logger =
-      Logger.getLogger("ResoluteReadiness.ResoluteReady");
+      Logger.getLogger("ResoluteReadiness");
 
   /***
    * static factory method
@@ -89,6 +89,6 @@ public class BResoluteReady extends BComponent {
    */
   public void doScoreIt(Context cx) {
     BJobService.getService()
-               .submit(new BScoreMeister(this.getScore()), cx);
+               .submit(BScoreMeister.make(), cx);
   }
 }
